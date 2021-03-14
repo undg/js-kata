@@ -66,6 +66,13 @@ describe('PokerHand', () => {
                 hand1.clear()
                 hand2.clear()
             })
+            it(`same straits`, () => {
+                const hand1 = new PokerHand('2C 3S 4S 5C 6H')
+                const hand2 = new PokerHand('2s 3c 4c 5d 6s')
+                expect(hand1.compareWith(hand2)).toBe(Result.TIE)
+                hand1.clear()
+                hand2.clear()
+            })
         })
     })
 })

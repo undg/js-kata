@@ -10,9 +10,6 @@ export default class PokerHand {
     }
 
     compareWith() {
-        // console.log(
-        // this.hands.hand1, handValue(this.hands.hand1) , handValue(this.hands.hand2), this.hands.hand2
-        // )
         if (this.win()) return Result.WIN
         if (this.loose()) return Result.LOSS
         if (this.tie()) return Result.TIE

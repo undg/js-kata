@@ -16,12 +16,35 @@ export function handValue(hand) {
     if (bestHandName === 'pair') return handValue + pairValue(hand)
     if (bestHandName === 'twoPairs') return handValue + twoPairsValue(hand)
     if (bestHandName === 'three') return handValue + threeValue(hand)
-    if (bestHandName === 'strait') return handValue
-    if (bestHandName === 'flush') return handValue
-    if (bestHandName === 'full') return handValue
-    if (bestHandName === 'four') return handValue
-    if (bestHandName === 'straitFlush') return handValue
+    if (bestHandName === 'strait') return handValue + anyHighCardValue(hand)
+    if (bestHandName === 'flush') return handValue + anyHighCardValue(hand)
+    if (bestHandName === 'full') return handValue + anyHighCardValue(hand)
+    if (bestHandName === 'four') return handValue + fourValue(hand)
+    if (bestHandName === 'straitFlush') return handValue + anyHighCardValue(hand)
     if (bestHandName === 'royalFlush') return handValue
+}
+
+/**
+ * @param {string[]} hand
+ * @return {number} float 0.0x
+ */
+function anyHighCardValue(hand) {
+    const cardValue = checkHand(hand).highCard / 100
+    return cardValue
+}
+
+/**
+ * @param {string[]} hand
+ * @return {number} float 0.0x
+ */
+function fourValue(hand) {
+    const map = mapCards(hand)
+    const card = Object.keys(map).find((key) => map[key] === 4)
+
+    if (card.length !== 1) return 0
+
+    const cardValue = cardsValueArr.indexOf(card) / 100
+    return cardValue
 }
 
 /**
