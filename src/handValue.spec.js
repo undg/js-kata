@@ -3,7 +3,7 @@ import { destruct } from './StoreHands'
 
 describe('HandValue() evaluate hand rate', () => {
     const hands = {
-        royalFlush: destruct('AC KC DC JC TC'),
+        royalFlush: destruct('AC KC DC JC TC'), // 👍
         straitFlush: destruct('9C 8C DC JC TC'), // 👍
         four: destruct('8c 8d 8h kd 8s'),
         full: destruct('2c 2s 5c 5s 5d'),
@@ -13,11 +13,38 @@ describe('HandValue() evaluate hand rate', () => {
         strait3: destruct('9d 8C Ds Jh TC'), // 👍
         three: destruct('AC 4S AS 8C AH'),
         twoPairs: destruct('AC 4S 4S 8C AH'),
-        pair: destruct('AC 4S 5S 8C AH'),
+        pair: destruct('AC 4S 5S 8C AH'), // 👍
         highCard: destruct('7C 2H 5S 8C AH'), // 👍
     }
+
+    it(`Two Pair's`, () => {
+        expect(handValue(hands.pair).pair).toBe(true)
+        // expect(handValue(hands.pair).twoPairs).toBe(true)
+        expect(handValue(hands.pair).three).toBe(false)
+        expect(handValue(hands.pair).full).toBe(false)
+        expect(handValue(hands.pair).four).toBe(false)
+    })
+
+    it(`Pair`, () => {
+        expect(handValue(hands.pair).pair).toBe(true)
+        expect(handValue(hands.pair).twoPairs).toBe(false)
+        expect(handValue(hands.pair).three).toBe(false)
+        expect(handValue(hands.pair).full).toBe(false)
+        expect(handValue(hands.pair).four).toBe(false)
+    })
+
+    it(`Royal flush`, () => {
+        expect(handValue(hands.royalFlush).royalFlush).toBe(true)
+        expect(handValue(hands.royalFlush).strait).toBe(true)
+        expect(handValue(hands.royalFlush).flush).toBe(true)
+        expect(handValue(hands.royalFlush).highCard).toBe(12)
+    })
+
     it(`Strait flush`, () => {
         expect(handValue(hands.straitFlush).straitFlush).toBe(true)
+        expect(handValue(hands.straitFlush).strait).toBe(true)
+        expect(handValue(hands.straitFlush).flush).toBe(true)
+        expect(handValue(hands.straitFlush).highCard).not.toBe(12)
     })
 
     it(`Strait`, () => {
@@ -28,9 +55,9 @@ describe('HandValue() evaluate hand rate', () => {
 
     it(`normal Flush`, () => {
         expect(handValue(hands.flush).flush).toBe(true)
-        expect(handValue(hands.royalFlush).royalFlush).toBe(true)
-        expect(handValue(hands.straitFlush).straitFlush).toBe(true)
-        expect(handValue(hands.fullHouse).full).toBe(false)
+        expect(handValue(hands.flush).royalFlush).toBe(false)
+        expect(handValue(hands.flush).straitFlush).toBe(false)
+        expect(handValue(hands.flush).full).toBe(false)
     })
 
     it('only highCard is true, all other hands should be false', () => {

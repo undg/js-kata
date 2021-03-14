@@ -14,7 +14,7 @@ export function handValue(hand = []) {
         strait: strait(hand),
         three: false,
         twoPairs: false,
-        pair: false,
+        pair: pair(hand),
         highCard: highCard(hand),
     }
 }
@@ -24,14 +24,13 @@ export function handValue(hand = []) {
  * @return {boolean}
  */
 function royalFlush(hand) {
-    return straitFlush(hand)
+    return straitFlush(hand) && highCard(hand) === cardsValueArr.length - 1
 }
 /**
  * @param {string[]} hand
  * @return {boolean}
  */
 function straitFlush(hand) {
-    // console.log(hand, flush(hand), strait(hand))
     return flush(hand) && strait(hand)
 }
 
@@ -70,15 +69,46 @@ function strait(hand) {
  * @param {string[]} hand
  * @return {number}
  */
+function pair(hand) {
+    const counts = countSameValues(hand) 
+    const havePair = !(counts.indexOf(2) === -1)
+    return havePair
+}
+
+/**
+ * @param {string[]} hand
+ * @return {number}
+ */
 function highCard(hand) {
     const highCardIdx = getSortedValues(hand).splice(-1)[0]
     return highCardIdx
 }
-
 
 /**
  * helper function
  * @param {string[]} hand
  * @return {number[]}
  */
-const getSortedValues = hand => hand.map((card) => cardsValueArr.indexOf(card[0])).sort((a, b) => a - b)
+const getSortedValues = (hand) => hand.map((card) => cardsValueArr.indexOf(card[0])).sort((a, b) => a - b)
+
+/**
+ * helper function
+ * @param {any[]} arr
+ * @return {any[]}
+ */
+const getUniqValues = arr => arr.filter((val, idx, self) => self.indexOf(val) === idx)
+
+/**
+ * helper function
+ * @param {string[]} hand
+ * @return {number[]}
+ */
+const countSameValues = hand => {
+    const map = hand.reduce((obj, card) => {
+        obj[card[0]] = ++obj[card[0]] || 1
+        return obj
+    }, {})
+    const counted = Object.keys(map).map(key => map[key]) 
+    return counted
+}
+
