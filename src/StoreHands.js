@@ -14,12 +14,9 @@ export default class StoreHands {
 
     /**
      * get.
-     * @return Array {card, color}
+     * @return Card[]
      */
     get() {
-        // const hand1 = this.hand1 ?? []
-        // const hand2 = this.hand1 ?? []
-        // return { hand1, hand2 }
         return this
     }
 
@@ -27,16 +24,16 @@ export default class StoreHands {
      * clear.
      */
     clear() {
-        this.hand1 = []
-        this.hand2 = []
+        this.hand1 = undefined
+        this.hand2 = undefined
     }
 }
 
 /**
  * destructure.
  *
- * @param {} hand
+ * @param {string} hand
  */
 export function destruct(hand) {
-    return hand.split(' ').map((cardStr) => ({ card: cardStr[0].toLowerCase(), color: cardStr[1].toLowerCase() }))
+    return hand.split(' ').map(card => card.toLowerCase())
 }

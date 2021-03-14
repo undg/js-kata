@@ -4,6 +4,16 @@ export const Result = {
     TIE: 3,
 }
 
-export const cards = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', 'U', 'J', 'D', 'K', 'A', ]
-export const hands = [ 'high card', 'pair', 'two pair', 'three of a kind', 'strait', 'flush', 'full house', 'four of kind', 'strait flush', 'royal flush' ]
-
+export const cards = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'D', 'K', 'A']
+export const hands = [
+    'royal flush',
+    'strait flush',
+    'four of kind',
+    'full house',
+    'flush',
+    'strait',
+    'three of a kind', // 3 same card's  / colors not important
+    'two pair', // 2 same cards / colors not important
+    'pair',
+    'high card',
+]
