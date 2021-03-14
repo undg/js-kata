@@ -4,7 +4,6 @@ describe('StoreHands() to later comparision', () => {
     describe('set any case and get lower case', () => {
         const store = new StoreHands()
 
-
         store.set('h1 zA')
         store.set('H2 xw yq')
 
@@ -29,7 +28,7 @@ describe('StoreHands() to later comparision', () => {
 
     describe('destruct() string into array of objects', () => {
         const hand = 'AC 4S'
-        const out = [ 'ac', '4s', ]
+        const out = ['ac', '4s']
         it('should return array of cards', () => {
             expect(destruct(hand)).toEqual(out)
         })
