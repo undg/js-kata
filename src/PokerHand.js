@@ -1,4 +1,5 @@
 import { Result } from './constants'
+import { handValue } from './handValue'
 import Store from './StoreHands'
 const store = new Store()
 
@@ -11,12 +12,19 @@ export default class PokerHand {
     compareWith() {
         if (this.win()) return Result.WIN
         if (this.loose()) return Result.LOSS
-        return Result.TIE
+        if (this.tie()) return Result.TIE
     }
     win() {
-        return false
+        return handValue(this.hands.hand1) < handValue(this.hands.hand2)
     }
     loose() {
-        return false
+        return handValue(this.hands.hand1) > handValue(this.hands.hand2)
+    }
+    tie() {
+        return handValue(this.hands.hand1) === handValue(this.hands.hand2)
+    }
+
+    clear() {
+        store.clear()
     }
 }

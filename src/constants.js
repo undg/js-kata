@@ -5,21 +5,21 @@ export const Result = {
 }
 
 export const cardsValueArr = [
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    'T',
-    'J',
-    'D',
-    'K',
     'A',
+    'K',
+    'D',
+    'J',
+    'T',
+    '9',
+    '8',
+    '7',
+    '6',
+    '5',
+    '4',
+    '3',
+    '2',
 ]
-export const hands = [
+export const handsValueArr = [
     'royalFlush',
     'straitFlush',
     'four',
