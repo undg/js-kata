@@ -32,6 +32,13 @@ describe('PokerHand', () => {
                 hand1.clear()
                 hand2.clear()
             })
+            it(`three vs three`, () => {
+                const hand1 = new PokerHand('dd dc dS 9C kH')
+                const hand2 = new PokerHand('5d 5s 5C dS 2D')
+                expect(hand1.compareWith(hand2)).toBe(Result.WIN)
+                hand1.clear()
+                hand2.clear()
+            })
         })
 
         describe('Loose', () => {

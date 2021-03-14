@@ -15,13 +15,27 @@ export function handValue(hand) {
     if (bestHandName === 'highCard') return handValue + allOwnedHands.highCard
     if (bestHandName === 'pair') return handValue + pairValue(hand)
     if (bestHandName === 'twoPairs') return handValue + twoPairsValue(hand)
-    if (bestHandName === 'three') return handValue
+    if (bestHandName === 'three') return handValue + threeValue(hand)
     if (bestHandName === 'strait') return handValue
     if (bestHandName === 'flush') return handValue
     if (bestHandName === 'full') return handValue
     if (bestHandName === 'four') return handValue
     if (bestHandName === 'straitFlush') return handValue
     if (bestHandName === 'royalFlush') return handValue
+}
+
+/**
+ * @param {string[]} hand
+ * @return {number} float 0.0x
+ */
+function threeValue(hand) {
+    const map = mapCards(hand)
+    const card = Object.keys(map).find((key) => map[key] === 3)
+
+    if (card.length !== 1) return 0
+
+    const cardValue = cardsValueArr.indexOf(card) / 100
+    return cardValue
 }
 
 /**

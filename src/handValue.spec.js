@@ -11,7 +11,7 @@ describe('handValue()', () => {
         strait: destruct('3c 4s 5h 6d 7d'),
         strait2: destruct('7c td 8s 9h jd'),
         strait3: destruct('9d 8C Ds Jh TC'),
-        three: destruct('AC 4S AS 8C AH'),
+        three: destruct('9C 4S 9S 8C 9H'),
         twoPairs: destruct('AC 4S 4S 8C AH'),
         twoPairs2: destruct('dC 4S 4S 8C dH'),
         pair: destruct('kC 4S 5S 8C kH'),
@@ -26,7 +26,7 @@ describe('handValue()', () => {
         expect(handValue(hands.full)).toBe(3)
         expect(handValue(hands.flush)).toBe(4)
         expect(handValue(hands.strait)).toBe(5)
-        expect(handValue(hands.three)).toBe(6)
+        expect(handValue(hands.three)).toBe(6.05)
         expect(handValue(hands.twoPairs)).toBe(7)
         expect(handValue(hands.twoPairs2)).toBe(7.02)
         expect(handValue(hands.pair)).toBe(8.01)
