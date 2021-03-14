@@ -22,7 +22,7 @@ export function checkHand(hand = []) {
  * @return {boolean}
  */
 function royalFlush(hand) {
-    return straitFlush(hand) && highCard(hand) === 0 
+    return straitFlush(hand) && highCard(hand) === 0
 }
 /**
  * @param {string[]} hand
@@ -120,8 +120,6 @@ function highCard(hand) {
     return highCardIdx
 }
 
-
-
 /**
  * helper function
  * @param {string[]} hand
@@ -142,10 +140,13 @@ const getUniqValues = (arr) => arr.filter((val, idx, self) => self.indexOf(val) 
  * @return {number[]}
  */
 const countSameValues = (hand) => {
-    const map = hand.reduce((obj, card) => {
-        obj[card[0]] = ++obj[card[0]] || 1
-        return obj
-    }, {})
+    const map = mapCards(hand)
     const counted = Object.keys(map).map((key) => map[key])
     return counted
 }
+
+export const mapCards = (hand) =>
+    hand.reduce((obj, card) => {
+        obj[card[0]] = ++obj[card[0]] || 1
+        return obj
+    }, {})

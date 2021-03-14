@@ -25,9 +25,9 @@ describe('PokerHand', () => {
                 hand1.clear()
                 hand2.clear()
             })
-            it.skip(`two pairs vs two pair @TODO`, () => {
-                const hand1 = new PokerHand('dC dS 3S 3C kH')
-                const hand2 = new PokerHand('4S 4S 8C 8S 2D')
+            it(`pair vs pair`, () => {
+                const hand1 = new PokerHand('dd dd 3S 9C kH')
+                const hand2 = new PokerHand('5d 5d 8C dS 2D')
                 expect(hand1.compareWith(hand2)).toBe(Result.WIN)
                 hand1.clear()
                 hand2.clear()

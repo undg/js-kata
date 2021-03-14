@@ -15,6 +15,3 @@ The result of your poker hand compare can be one of these 3 options:
 * LOSS should return the integer `2`
 * TIE should return the integer `3`
 
-You are free to use any libraries you want but please do not anything that already evaluates poker hands ;)
-
-Good luck!
