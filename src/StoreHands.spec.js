@@ -8,16 +8,16 @@ describe('StoreHands() to later comparision', () => {
         store.set('H2 xw yq')
 
         it('get() hand1 (array of card objects)', () => {
-            expect(store.get().hand1[0]).toBe('h1')
+            expect(store.get().hand1[0]).toBe('H1')
 
-            expect(store.get().hand1[1]).toBe('za')
+            expect(store.get().hand1[1]).toBe('ZA')
         })
         it('get() hand2 (array of card objects)', () => {
-            expect(store.get().hand2[0]).toBe('h2')
+            expect(store.get().hand2[0]).toBe('H2')
 
-            expect(store.get().hand2[1]).toBe('xw')
+            expect(store.get().hand2[1]).toBe('XW')
 
-            expect(store.get().hand2[2]).toBe('yq')
+            expect(store.get().hand2[2]).toBe('YQ')
         })
         it('clear() for cleaning', () => {
             store.clear()
@@ -28,7 +28,7 @@ describe('StoreHands() to later comparision', () => {
 
     describe('destruct() string into array of objects', () => {
         const hand = 'AC 4S'
-        const out = ['ac', '4s']
+        const out = ['AC', '4S']
         it('should return array of cards', () => {
             expect(destruct(hand)).toEqual(out)
         })

@@ -15,7 +15,7 @@ export function handValue(hand = []) {
         three: false,
         twoPairs: false,
         pair: false,
-        highCard: true,
+        highCard: highCard(hand),
     }
 }
 
@@ -23,17 +23,16 @@ export function handValue(hand = []) {
  * @param {string[]} hand
  * @return {boolean}
  */
-function strait(hand) {
-    const onlyValues = hand.map((card) => cardsValueArr.indexOf(card[0]))
-    console.log(onlyValues)
-    return onlyValues.reduce(
-        (prev, card) => {
-            if (prev.card === null) return { card, canBeStrait: true }
-            if (prev.canBeStrait) return { card, canBeStrait: prev.card + 1 === card }
-            return { card, canBeStrait: false }
-        },
-        { card: null, canBeStrait: true }
-    ).canBeStrait
+function royalFlush(hand) {
+    return straitFlush(hand)
+}
+/**
+ * @param {string[]} hand
+ * @return {boolean}
+ */
+function straitFlush(hand) {
+    // console.log(hand, flush(hand), strait(hand))
+    return flush(hand) && strait(hand)
 }
 
 /**
@@ -55,13 +54,31 @@ function flush(hand = []) {
  * @param {string[]} hand
  * @return {boolean}
  */
-function royalFlush(hand) {
-    return flush(hand)
+function strait(hand) {
+    const onlyValues = getSortedValues(hand)
+    return onlyValues.reduce(
+        (prev, card) => {
+            if (prev.card === null) return { card, canBeStrait: true }
+            if (prev.canBeStrait) return { card, canBeStrait: prev.card + 1 === card }
+            return { card, canBeStrait: false }
+        },
+        { card: null, canBeStrait: true }
+    ).canBeStrait
 }
+
 /**
  * @param {string[]} hand
- * @return {boolean}
+ * @return {number}
  */
-function straitFlush(hand) {
-    return flush(hand)
+function highCard(hand) {
+    const highCardIdx = getSortedValues(hand).splice(-1)[0]
+    return highCardIdx
 }
+
+
+/**
+ * helper function
+ * @param {string[]} hand
+ * @return {number[]}
+ */
+const getSortedValues = hand => hand.map((card) => cardsValueArr.indexOf(card[0])).sort((a, b) => a - b)

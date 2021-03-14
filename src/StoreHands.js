@@ -35,5 +35,5 @@ export default class StoreHands {
  * @param {string} hand
  */
 export function destruct(hand) {
-    return hand.split(' ').map(card => card.toLowerCase())
+    return hand.split(' ').map(card => card.toUpperCase())
 }
