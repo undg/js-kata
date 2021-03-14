@@ -8,12 +8,12 @@ export function handValue(hand = []) {
     return {
         royalFlush: royalFlush(hand),
         straitFlush: straitFlush(hand),
-        four: false,
-        full: false,
+        four: four(hand),
+        full: full(hand),
         flush: flush(hand),
         strait: strait(hand),
-        three: false,
-        twoPairs: false,
+        three: three(hand),
+        twoPairs: twoPairs(hand),
         pair: pair(hand),
         highCard: highCard(hand),
     }
@@ -32,6 +32,24 @@ function royalFlush(hand) {
  */
 function straitFlush(hand) {
     return flush(hand) && strait(hand)
+}
+
+/**
+ * @param {string[]} hand
+ * @return {number}
+ */
+function four(hand) {
+    const counts = countSameValues(hand)
+    const haveThree = !(counts.indexOf(4) === -1)
+    return haveThree
+}
+
+/**
+ * @param {string[]} hand
+ * @return {boolean}
+ */
+function full(hand) {
+    return pair(hand) && three(hand)
 }
 
 /**
@@ -69,8 +87,28 @@ function strait(hand) {
  * @param {string[]} hand
  * @return {number}
  */
+function three(hand) {
+    const counts = countSameValues(hand)
+    const haveThree = !(counts.indexOf(3) === -1)
+    return haveThree
+}
+
+/**
+ * @param {string[]} hand
+ * @return {number}
+ */
+function twoPairs(hand) {
+    const counts = countSameValues(hand)
+    const havePairs = counts.filter((cnt) => cnt == 2).length
+    return havePairs === 2
+}
+
+/**
+ * @param {string[]} hand
+ * @return {number}
+ */
 function pair(hand) {
-    const counts = countSameValues(hand) 
+    const counts = countSameValues(hand)
     const havePair = !(counts.indexOf(2) === -1)
     return havePair
 }
@@ -96,19 +134,18 @@ const getSortedValues = (hand) => hand.map((card) => cardsValueArr.indexOf(card[
  * @param {any[]} arr
  * @return {any[]}
  */
-const getUniqValues = arr => arr.filter((val, idx, self) => self.indexOf(val) === idx)
+const getUniqValues = (arr) => arr.filter((val, idx, self) => self.indexOf(val) === idx)
 
 /**
  * helper function
  * @param {string[]} hand
  * @return {number[]}
  */
-const countSameValues = hand => {
+const countSameValues = (hand) => {
     const map = hand.reduce((obj, card) => {
         obj[card[0]] = ++obj[card[0]] || 1
         return obj
     }, {})
-    const counted = Object.keys(map).map(key => map[key]) 
+    const counted = Object.keys(map).map((key) => map[key])
     return counted
 }
-
