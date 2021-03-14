@@ -1,10 +1,5 @@
-/**
- * StoreHands.
- */
 export default class StoreHands {
     /**
-     * set hand's.
-     *
      * @param {string} hand
      */
     set(hand) {
@@ -13,16 +8,12 @@ export default class StoreHands {
     }
 
     /**
-     * get.
-     * @return Card[]
+     * @return {{hand1: string[], hand2: string[]}}
      */
     get() {
         return this
     }
 
-    /**
-     * clear.
-     */
     clear() {
         this.hand1 = undefined
         this.hand2 = undefined
@@ -30,10 +21,9 @@ export default class StoreHands {
 }
 
 /**
- * destructure.
- *
  * @param {string} hand
+ * @return {string[]}
  */
 export function destruct(hand) {
-    return hand.split(' ').map(card => card.toUpperCase())
+    return hand.split(' ').map((card) => card.toUpperCase())
 }

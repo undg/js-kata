@@ -34,12 +34,12 @@ function straitFlush(hand) {
 
 /**
  * @param {string[]} hand
- * @return {number}
+ * @return {boolean}
  */
 function four(hand) {
     const counts = countSameValues(hand)
-    const haveThree = !(counts.indexOf(4) === -1)
-    return haveThree
+    const haveFour = !(counts.indexOf(4) === -1)
+    return haveFour
 }
 
 /**
@@ -83,7 +83,7 @@ function strait(hand) {
 
 /**
  * @param {string[]} hand
- * @return {number}
+ * @return {boolean}
  */
 function three(hand) {
     const counts = countSameValues(hand)
@@ -93,7 +93,7 @@ function three(hand) {
 
 /**
  * @param {string[]} hand
- * @return {number}
+ * @return {boolean}
  */
 function twoPairs(hand) {
     const counts = countSameValues(hand)
@@ -103,7 +103,7 @@ function twoPairs(hand) {
 
 /**
  * @param {string[]} hand
- * @return {number}
+ * @return {boolean}
  */
 function pair(hand) {
     const counts = countSameValues(hand)
