@@ -7,12 +7,12 @@ describe('StoreHands() to later comparision', () => {
         store.set('h1 zA')
         store.set('H2 xw yq')
 
-        it('get() hand1 (array of card objects)', () => {
+        it('get() hand1', () => {
             expect(store.get().hand1[0]).toBe('H1')
 
             expect(store.get().hand1[1]).toBe('ZA')
         })
-        it('get() hand2 (array of card objects)', () => {
+        it('get() hand2', () => {
             expect(store.get().hand2[0]).toBe('H2')
 
             expect(store.get().hand2[1]).toBe('XW')
