@@ -1,6 +1,6 @@
 # **Poker Hand Comparison**
 
-Poker Hand Comparison is a little program that will compare two hands of poker according to the rules of [Texas Hold'em rules](https://en.wikipedia.org/wiki/Texas_hold_%27em#Hand_values).
+[Poker](Poker) Hand Comparison is a little program that will compare two hands of poker according to the rules of [Texas Hold'em rules](https://en.wikipedia.org/wiki/Texas_hold_%27em#Hand_values).
 
 ## Requirements
 
@@ -15,3 +15,28 @@ The result of your poker hand compare can be one of these 3 options:
 * LOSS should return the integer `2`
 * TIE should return the integer `3`
 
+## Installation
+
+```
+npm install
+```
+
+Check index.js and PokerHand.test.js for examples of usage.
+
+## Testing
+
+```
+npm run test
+```
+
+
+## Demo
+
+node version: v14.17.0
+```
+node --experimental-specifier-resolution=node src/index.js
+```
+or
+```
+npm start
+```
